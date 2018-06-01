@@ -8,7 +8,7 @@ RUN yum -y update
 
 RUN yum -y install /tmp/wok.el7.centos.noarch.rpm /tmp/ginger-base.el7.centos.noarch.rpm /tmp/ginger.el7.centos.noarch.rpm /tmp/kimchi.el7.centos.noarch.rpm
 
-RUN sed -i 's/listen 0\.0\.0\.0:8001 ssl\;/listen 0\.0\.0\.0:8443 ssl\;/g' /etc/nginx/conf.d/wok.conf;sed -i 's/listen 0\.0\.0\.0:8000\;/listen 0\.0\.0\.0:80\;/g' /etc/nginx/conf.d/wok.conf;sed -i 's/\$host:8001/\$host:8443/g' /etc/nginx/conf.d/wok.conf;sed -i 's/#proxy_port = 8001/proxy_port = 8443/g' /etc/wok/wok.conf;systemctl start nginx
+RUN sed -i 's/listen 0\.0\.0\.0:8001 ssl\;/listen 0\.0\.0\.0:8443 ssl\;/g' /etc/nginx/conf.d/wok.conf;sed -i 's/listen 0\.0\.0\.0:8000\;/listen 0\.0\.0\.0:8080\;/g' /etc/nginx/conf.d/wok.conf;sed -i 's/\$host:8001/\$host:8443/g' /etc/nginx/conf.d/wok.conf;sed -i 's/#proxy_port = 8001/proxy_port = 8443/g' /etc/wok/wok.conf;systemctl restart nginx
 
 EXPOSE 8443
-CMD ["/bin/wokd"]
+CMD ["/bin/wokd --proxy_port=8443"]
