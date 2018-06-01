@@ -9,4 +9,4 @@ RUN yum -y update
 RUN yum -y install /tmp/wok.el7.centos.noarch.rpm /tmp/ginger-base.el7.centos.noarch.rpm /tmp/ginger.el7.centos.noarch.rpm /tmp/kimchi.el7.centos.noarch.rpm
 
 EXPOSE 8001
-CMD ["/usr/bin/wokd --host=0.0.0.0"]
+CMD ["/bin/wokd"]
